@@ -1,3 +1,7 @@
+"""给你 root1 和 root2 这两棵二叉搜索树。
+请你返回一个列表，其中包含 两棵树 中的所有整数并按 升序 排序。 
+"""
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
