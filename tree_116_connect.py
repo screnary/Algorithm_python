@@ -14,7 +14,7 @@ class Node:
 
 
 class Solution:
-    def connect(self, root):
+    def connect_bfs(self, root):
         if root is None: return None
         queue = [root]
         while queue:
@@ -28,3 +28,29 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
         return root
+
+    def connect(self, root):
+        """ divide conquer, O(1) space """
+        if not root or (not root.left and not root.right):
+            return root
+        if root.left and root.right:
+            root.left.next = root.right
+            root.right.next = self.getNextChild(root)
+        if not root.left:
+            root.right.next = self.getNextChild(root)
+        if not root.right:
+            root.left.next = self.getNextChild(root)
+
+        root.right = self.connect(root.right)
+        root.left = self.connect(root.left)
+        return root
+    
+    def getNextChild(self, root):
+        # search same level neighbor, from parent level nodes
+        while root.next:
+            if root.next.left:
+                return root.next.left
+            if root.next.right:
+                return root.next.right
+            root = root.next
+        return None
