@@ -22,4 +22,4 @@ class Solution:
         while parents[node] != node:
             node = parents[node]
         return parents[node]
-        
+    
