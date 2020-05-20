@@ -1,6 +1,8 @@
 """ 
 1143, the length of LCS
+最长公共子序列
 Dynamic Programming
+C[i,j] = #(LCS(text1[1,...,i], text2[1,...,j]))
 关键的状态转移：
     C[i,j] = C[i-1, j-1] + 1, if x[i]==y[j]
     C[i,j] = max(C[i,j-1], C[i-1,j]), if x[i] != y[j]
@@ -77,4 +79,4 @@ if __name__ == '__main__':
     print(res)
     [print(C[i]) for i in range(len(text1)+1)]
     sol.printAllLCS(text1, text2, C, len(text1), len(text2), "")
-    
+
