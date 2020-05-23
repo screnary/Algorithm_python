@@ -16,11 +16,11 @@ class Solution:
             if start == n:
                 res.append(path[:])  # deep copy
                 return
-            # left decision tree
+            # left decision tree, include this element
             path.append(nums[start])
             backtrack(path, start+1)
             path.pop()
-            # right decision tree
+            # right decision tree, exclude this element
             backtrack(path, start+1)
 
         backtrack([], 0)
