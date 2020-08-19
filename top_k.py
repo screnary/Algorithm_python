@@ -3,6 +3,7 @@
 堆，优先队列练习
 要求时间复杂度优于O(n log n)，n为数组大小
 """
+import heapq
 
 class Solution:
     def topKFrequent(self, nums, k):
@@ -89,6 +90,21 @@ class Solution:
             sift_down(arr, 0, scale)
         
         return arr
+    
+    # >>> use python lib heapq >>>
+    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+        if k == 0:
+            return list()
+
+        hp = [-x for x in arr[:k]]
+        heapq.heapify(hp)
+        for i in range(k, len(arr)):
+            if -hp[0] > arr[i]:
+                heapq.heappop(hp)
+                heapq.heappush(hp, -arr[i])
+        ans = [-x for x in hp]
+        return ans
+    # <<< use python lib heapq <<<
 
 
 if __name__=='__main__':

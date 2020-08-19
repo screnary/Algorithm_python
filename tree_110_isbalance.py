@@ -25,3 +25,19 @@ class Solution:
         d_l = self.depth(root.left)
         d_r = self.depth(root.right)
         return 1 + max(d_l, d_r)
+
+
+class Solution_2:
+    def isBalanced(self, root: TreeNode) -> bool:
+        # only need traverse once.
+        # check if this binary tree is ballanced
+        return self.depth(root) != -1
+
+    def depth(self, root):
+        if not root: return 0
+        left = self.depth(root.left)
+        if left == -1: return -1
+        right = self.depth(root.right)
+        if right == -1: return -1
+        # if is balanced, return the depth of this node; else: return -1
+        return max(left, right) + 1 if abs(left - right) < 2 else -1
